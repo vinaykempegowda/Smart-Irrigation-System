@@ -1,0 +1,75 @@
+import java.util.Random;
+import java.util.Scanner;
+
+public class SmartIrrigationSystemCLI {
+
+    private static boolean irrigationOn = false;
+    private static boolean rainDetected = false;
+    private static int soilMoisture = 100;
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            // Simulate environment
+            monitorSoilMoisture();
+            simulateWeather();
+
+            // Update irrigation based on conditions
+            updateIrrigationStatus();
+
+            // Manual user control
+            System.out.println("Enter 'start' to manually start irrigation, 'stop' to stop irrigation, or 'exit' to quit:");
+            String input = scanner.nextLine().toLowerCase();
+
+            switch (input) {
+                case "start":
+                    irrigationOn = true;
+                    updateIrrigationStatus();
+                    break;
+                case "stop":
+                    irrigationOn = false;
+                    updateIrrigationStatus();
+                    break;
+                case "exit":
+                    System.out.println("Exiting the system...");
+                    scanner.close();
+                    return;
+                default:
+                    System.out.println("Invalid input! Please enter 'start', 'stop', or 'exit'.");
+            }
+
+            System.out.println("----------------------------------------");
+        }
+    }
+
+    // Simulate soil moisture values
+    private static void monitorSoilMoisture() {
+        Random random = new Random();
+        soilMoisture = random.nextInt(101);  // 0 to 100%
+        System.out.println("Soil Moisture Level: " + soilMoisture + "%");
+
+        // Automatic control logic
+        if (soilMoisture < 40 && !rainDetected) {
+            irrigationOn = true;
+        } else {
+            irrigationOn = false;
+        }
+    }
+
+    // Simulate weather conditions (rainy or sunny)
+    private static void simulateWeather() {
+        Random random = new Random();
+        rainDetected = random.nextBoolean();
+        System.out.println("Weather Condition: " + (rainDetected ? "Rainy" : "Sunny"));
+    }
+
+    // Display the current irrigation status
+    private static void updateIrrigationStatus() {
+        if (irrigationOn && !rainDetected) {
+            System.out.println("Irrigation Status: ON");
+        } else {
+            System.out.println("Irrigation Status: OFF");
+        }
+    }
+}
