@@ -12,7 +12,8 @@ This project presents a simulated smart irrigation system developed using the Ja
 <summary><h2> Result </h2> </summary>
 <br>
 
-  ![image](https://github.com/user-attachments/assets/69d1d861-eebe-49c1-8221-73df41d1deab)
+![image](https://github.com/user-attachments/assets/93516528-afc7-406a-b44a-71c810b15a39)
+
 
 
 </details>
